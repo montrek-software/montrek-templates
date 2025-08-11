@@ -59,10 +59,10 @@ jobs:
           echo "DB_USER=postgres" >> $ENVPATH
           echo "DB_PASSWORD=ci_pipe_pssw" >> $ENVPATH
           echo "DB_NAME=montrek_ci_pipe_db" >> $ENVPATH
-          echo "DB_HOST=0.0.0.0" >> $ENVPATH
+          echo "DB_HOST=postgres" >> $ENVPATH
           echo "SECRET_KEY=testkey" >> $ENVPATH
 
-      - name: Run Tests and Coverage
+      - name: Run Tests
         run: |
           . .venv/bin/activate
           cd montrek/montrek
