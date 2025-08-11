@@ -64,5 +64,6 @@ jobs:
 
       - name: Run Tests and Coverage
         run: |
+          . .venv/bin/activate
           cd montrek/montrek
           python manage.py test ${{ inputs.montrek_project }} --exclude-tag=functional --parallel
