@@ -9,6 +9,14 @@ on:
       montrek_project:
         required: true
         type: string
+      mt_cloud_ref:
+        required: false
+        type: string
+        default: "" # empty means "don't clone"
+      mt_economic_common_ref:
+        required: false
+        type: string
+        default: "" # empty means "don't clone"
     secrets:
       PAT:
         required: true
@@ -35,26 +43,28 @@ jobs:
 
     steps:
       - name: Clone Montrek Repository
-        uses: actions/checkout@master
+        uses: actions/checkout@v4
         with:
           repository: chrishombach/montrek
           token: ${{ secrets.PAT }}
           path: ./montrek
           ref: ${{ inputs.montrek_base_version }}
       - name: Clone mt_cloud
-        uses: actions/checkout@master
+        if: inputs.mt_cloud_ref != ''
+        uses: actions/checkout@v4
         with:
           repository: montrek-software/mt_cloud
           token: ${{ secrets.PAT }}
           path: ./montrek/montrek/mt_cloud
-          ref: main
+          ref: ${{ inputs.mt_cloud_ref }}
       - name: Clone mt_economic_common
-        uses: actions/checkout@master
+        if: inputs.mt_economic_common_ref != ''
+        uses: actions/checkout@v4
         with:
           repository: montrek-software/mt_economic_common
           token: ${{ secrets.PAT }}
           path: ./montrek/montrek/mt_economic_common
-          ref: ${{ vars.ECONOMIC_COMMON_BRANCH }}
+          ref: ${{ input.mt_economic_common_ref }}
 
       - name: Checkout PR code or main
         uses: actions/checkout@v3
