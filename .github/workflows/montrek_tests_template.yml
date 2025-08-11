@@ -41,6 +41,20 @@ jobs:
           token: ${{ secrets.PAT }}
           path: ./montrek
           ref: ${{ inputs.montrek_base_version }}
+      - name: Clone mt_cloud
+        uses: actions/checkout@master
+        with:
+          repository: montrek-software/mt_cloud
+          token: ${{ secrets.PAT }}
+          path: ./montrek/montrek/mt_cloud
+          ref: main
+      - name: Clone mt_economic_common
+        uses: actions/checkout@master
+        with:
+          repository: montrek-software/mt_economic_common
+          token: ${{ secrets.PAT }}
+          path: ./montrek/montrek/mt_economic_common
+          ref: ${{ vars.ECONOMIC_COMMON_BRANCH }}
 
       - name: Checkout PR code or main
         uses: actions/checkout@v3
