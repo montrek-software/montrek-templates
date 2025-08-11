@@ -64,7 +64,7 @@ jobs:
           repository: montrek-software/mt_economic_common
           token: ${{ secrets.PAT }}
           path: ./montrek/montrek/mt_economic_common
-          ref: ${{ input.mt_economic_common_ref }}
+          ref: ${{ inputs.mt_economic_common_ref }}
 
       - name: Checkout PR code or main
         uses: actions/checkout@v3
