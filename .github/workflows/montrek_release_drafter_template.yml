@@ -1,14 +1,7 @@
-name: Release Drafter
+name: Montrek Release Drafter Template
 
 on:
-  push:
-    branches:
-      - main # <- change if your default branch is different
-    tags:
-      - "v*" # when you push a tag like v1.2.3 we'll publish
-  pull_request_target:
-    types: [opened, reopened, synchronize, edited, labeled, unlabeled]
-  workflow_dispatch:
+  workflow_call:
 
 permissions:
   contents: write # needed to update/publish releases
